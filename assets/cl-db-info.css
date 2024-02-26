@@ -1,0 +1,31 @@
+.cl-db-info .cl-ok{
+	color: #4CAF50;
+}
+
+.cl-db-info .cl-error{
+	color: #F44336;
+}
+
+.cl-db-info .cl-warning{
+	color: #FFC107;
+}
+
+.cl-tooltip-box {
+	position: relative;
+	display: inline-block;
+}
+
+.cl-tooltip-box .cl-tooltip-text {
+	visibility: hidden;
+	width: 200px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	padding: 6px 0;
+	position: absolute;
+	z-index: 1;
+}
+
+.cl-tooltip-box:hover .cl-tooltip-text {
+	visibility: visible;
+}
