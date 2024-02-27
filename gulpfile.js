@@ -28,7 +28,7 @@ gulp.task( 'admin-scss', function() {
 		.pipe( concat( 'cl-db-info.css' ) )
 		.pipe( replace( '//current-date//', `${getCurrentDate()}` ) )
 		.pipe( autoprefixer( 'last 2 versions', '> 5%', 'not ie 6-9' ) )
-		.pipe( sass( { outputStyle: 'compressed' } ).on( 'error', sass.logError ) )
+		.pipe( sass( {outputStyle: 'compressed' } ).on( 'error', sass.logError ) )
 		.pipe( sourcemaps.write( '../maps' ) )
 		.pipe( gulp.dest( './assets' ) )
 		.on( 'end', function() {
@@ -38,21 +38,28 @@ gulp.task( 'admin-scss', function() {
 
 /** TypeScript Task **/
 gulp.task( 'admin-ts', function() {
-	return gulp.src( './src/ts/**/*.ts' )
+	return gulp.src( './src/ts/general.ts' )
 		.pipe( sourcemaps.init() )
 		.pipe( sourcemaps.identityMap() )
 		.pipe( plumber() )
 		.pipe( concat( 'cl-db-info.ts' ) )
+		.pipe( replace( '//current-date//', `${getCurrentDate()}` ) )
 		.pipe( ts( {
 			noImplicitAny: true,
 			strict: true,
 			allowJs: true,
 			target: 'ES6',
+			moduleResolution: 'node',
 		} ) )
-		.pipe( uglify() )
+		.pipe( uglify( {
+			output: {
+				comments: 'some',
+			},
+
+		}) )
 		.pipe( rename( { extname: '.js' } ) )
 		.pipe( sourcemaps.write( '../maps' ) )
-		.pipe( gulp.dest( './js' ) )
+		.pipe( gulp.dest( './assets' ) )
 		.on( 'end', function() {
 			log.info( 'Result Gulp Task TS: Created: ./assets/cl-db-info.js' );
 		} );
@@ -62,6 +69,8 @@ gulp.task( 'admin-ts', function() {
 gulp.task( 'watch', function() {
 	// Inspect changes in all scss files.
 	gulp.watch( [ './src/sass/**/*.scss' ], gulp.parallel( [ 'admin-scss' ] ) );
+	// Inspect changes in all ts files.
+	gulp.watch( [ './src/ts/**/*.ts' ], gulp.parallel( [ 'admin-ts' ] ) );
 } );
 
-gulp.task( 'default', gulp.parallel( 'watch', 'admin-scss' ) );
+gulp.task( 'default', gulp.parallel( 'watch', 'admin-scss', 'admin-ts' ) );

@@ -5,8 +5,8 @@
   "main": "gulpfile.js",
   "private": true,
   "devDependencies": {
-    "@wordpress/eslint-plugin": "^17.9.0",
-    "@wordpress/stylelint-config": "^21.35.0",
+    "@wordpress/eslint-plugin": "^17.2.0",
+    "@wordpress/stylelint-config": "^21.28.0",
     "fancy-log": "2.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
@@ -18,7 +18,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-typescript": "6.0.0-alpha.1",
     "gulp-uglify": "^3.0.2",
-    "npm": "^10.4.0"
+    "npm": "^10.2.0"
   },
   "browserslist": [
     "last 2 versions",
@@ -27,11 +27,9 @@
   ],
   "dependencies": {
     "node-sass": "^9.0.0",
-    "typescript": "^5.3.3",
-    "undici-types": "^6.6.2"
-  },
-  "overrides": {
-    "graceful-fs": "^4.2.11"
+    "typescript": "^5.2.2",
+    "undici": "github:nodejs/undici",
+    "undici-types": "^5.26.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
