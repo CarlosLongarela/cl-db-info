@@ -21,16 +21,16 @@ const gulp       = require( 'gulp' ),
 
 /** SCSS Task **/
 gulp.task( 'admin-scss', function() {
-	return gulp.src( './sass/assets.scss' )
+	return gulp.src( './src/sass/general.scss' )
 		.pipe( sourcemaps.init() )
 		.pipe( sourcemaps.identityMap() )
 		.pipe( plumber() )
-		.pipe( concat( 'assets.css' ) )
+		.pipe( concat( 'cl-db-info.css' ) )
 		.pipe( replace( '//current-date//', `${getCurrentDate()}` ) )
 		.pipe( autoprefixer( 'last 2 versions', '> 5%', 'not ie 6-9' ) )
 		.pipe( sass( { outputStyle: 'compressed' } ).on( 'error', sass.logError ) )
-		.pipe( sourcemaps.write( './maps' ) )
-		.pipe( gulp.dest( './' ) )
+		.pipe( sourcemaps.write( '../maps' ) )
+		.pipe( gulp.dest( './assets' ) )
 		.on( 'end', function() {
 			log.info( 'Result Gulp Task CSS: Created: ./assets/cl-db-info.css' );
 		} );
@@ -61,7 +61,7 @@ gulp.task( 'admin-ts', function() {
 
 gulp.task( 'watch', function() {
 	// Inspect changes in all scss files.
-	gulp.watch( [ './sass/**/*.scss' ], gulp.parallel( [ 'admin-scss' ] ) );
+	gulp.watch( [ './src/sass/**/*.scss' ], gulp.parallel( [ 'admin-scss' ] ) );
 } );
 
 gulp.task( 'default', gulp.parallel( 'watch', 'admin-scss' ) );

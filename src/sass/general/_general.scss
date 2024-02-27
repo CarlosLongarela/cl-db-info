@@ -1,0 +1,34 @@
+.cl-db-info {
+	.cl-ok{
+		color: $color_notice-ok-border;
+	}
+
+	.cl-error{
+		color: $color_notice-error-border;
+	}
+
+	.cl-warning{
+		color: $color_notice-warning-border;
+	}
+}
+
+
+.cl-tooltip-box {
+	position: relative;
+	display: inline-block;
+}
+
+.cl-tooltip-box .cl-tooltip-text {
+	visibility: hidden;
+	width: 200px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	padding: 6px 0;
+	position: absolute;
+	z-index: 1;
+}
+
+.cl-tooltip-box:hover .cl-tooltip-text {
+	visibility: visible;
+}
